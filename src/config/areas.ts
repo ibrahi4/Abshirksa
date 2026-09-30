@@ -221,3 +221,9 @@ export const getAreaBySlug = (slug: string): Area | undefined =>
   areas.find((a) => a.slug === slug);
 
 export const mainAreas = areas.filter((a) => a.isMain);
+export const areaGroups = [
+  { name: "المنطقة الوسطى", cities: ["الرياض"] },
+  { name: "المنطقة الغربية", cities: ["جدة", "مكة المكرمة", "المدينة المنورة", "الطائف"] },
+  { name: "المنطقة الشرقية", cities: ["الدمام", "الخبر"] },
+  { name: "المنطقة الشمالية", cities: ["تبوك"] },
+];

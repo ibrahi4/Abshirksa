@@ -5,5 +5,4 @@ export const tajawal = Tajawal({
   display: "swap",
   variable: "--font-tajawal",
   weight: ["300", "400", "500", "700", "800", "900"],
-  preload: true,
 });

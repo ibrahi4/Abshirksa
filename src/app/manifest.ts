@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.name,
-    short_name: "أبشر للنقل",
+    short_name: "أبشر لنقل الأثاث",
     description: "شركة نقل أثاث رائدة في المملكة العربية السعودية",
     start_url: "/",
     display: "standalone",

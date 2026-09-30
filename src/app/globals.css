@@ -10,43 +10,38 @@
     --brand-dark: 213 53% 13%;
     --brand-light: 48 33% 98%;
 
-    --background: 48 33% 98%;
-    --foreground: 213 53% 13%;
+    --background: 0 0% 100%;
+    --foreground: 215 28% 17%; /* Slate-800 لراحة العين */
+    
     --card: 0 0% 100%;
-    --card-foreground: 213 53% 13%;
+    --card-foreground: 215 28% 17%;
     --popover: 0 0% 100%;
-    --popover-foreground: 213 53% 13%;
+    --popover-foreground: 215 28% 17%;
+    
     --primary: 213 52% 24%;
-    --primary-foreground: 48 33% 98%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 43 47% 58%;
     --secondary-foreground: 213 53% 13%;
-    --muted: 210 20% 96%;
-    --muted-foreground: 213 20% 45%;
-    --accent: 38 92% 50%;
-    --accent-foreground: 213 53% 13%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 213 20% 90%;
-    --input: 213 20% 90%;
+    
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%; /* Slate-500 */
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 213 52% 24%;
-    --radius: 0.75rem;
-  }
-
-  * {
-    @apply border-border;
+    --radius: 1rem;
   }
 
   html {
     scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased tracking-normal leading-relaxed;
+    @apply bg-slate-50/50 text-foreground font-sans antialiased;
+    line-height: 1.8; /* ارتفاع سطر ممتاز للعربي */
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold leading-snug tracking-tight;
+    @apply font-bold tracking-tight text-brand-dark leading-snug;
   }
 }
