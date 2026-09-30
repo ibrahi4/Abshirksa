@@ -10,10 +10,11 @@ export function CallFloat() {
   return (
     <a
       href={`tel:${siteConfig.phone}`}
-      aria-label="اتصال"
-      className="fixed bottom-5 right-5 z-30 flex h-13 w-13 items-center justify-center rounded-full bg-brand-primary text-white shadow-xl hover:scale-105 transition-transform"
+      aria-label="اتصل بنا الآن"
+      className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary text-white shadow-2xl transition-transform hover:scale-110 active:scale-95 border border-white/10"
     >
       <Phone className="h-6 w-6" strokeWidth={2.5} />
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-primary opacity-25 pointer-events-none" />
     </a>
   );
 }
