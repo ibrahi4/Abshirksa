@@ -45,19 +45,20 @@ export function Header() {
     <>
       <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-200 shadow-sm">
         <div className="container mx-auto px-4">
-          <div className="flex h-16 md:h-20 items-center justify-between gap-2">
-            {/* Logo */}
+          <div className="flex h-20 items-center justify-between gap-4">
+            
+            {/* 1. اليمين: اللوجو (يرجع للرئيسية عند الضغط عليه) */}
             <Logo />
 
-            {/* Desktop Nav */}
-            <nav className="hidden xl:flex items-center gap-1" aria-label="التنقل الرئيسي">
+            {/* 2. الوسط: النيفبار لجميع اللابتوبات والكمبيوتر (lg:flex من 1024px) */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="التنقل الرئيسي">
               {navLinks.map((link) => {
                 const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
                 if (link.hasDropdown === "services") {
                   return (
                     <div key={link.href} className="relative" onMouseEnter={() => setDropdown("services")} onMouseLeave={() => setDropdown(null)}>
-                      <button className={cn("flex items-center gap-1 px-3 py-2 text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
+                      <button className={cn("flex items-center gap-1 px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
                         {link.label}
                         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", dropdown === "services" && "rotate-180")} />
                       </button>
@@ -68,6 +69,11 @@ export function Header() {
                               {s.shortTitle}
                             </Link>
                           ))}
+                          <div className="border-t border-slate-100 mt-1 pt-1">
+                            <Link href="/services" className="block text-center text-xs font-bold text-brand-primary py-1.5 hover:underline">
+                              عرض جميع الخدمات ←
+                            </Link>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -77,7 +83,7 @@ export function Header() {
                 if (link.hasDropdown === "areas") {
                   return (
                     <div key={link.href} className="relative" onMouseEnter={() => setDropdown("areas")} onMouseLeave={() => setDropdown(null)}>
-                      <button className={cn("flex items-center gap-1 px-3 py-2 text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
+                      <button className={cn("flex items-center gap-1 px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
                         {link.label}
                         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", dropdown === "areas" && "rotate-180")} />
                       </button>
@@ -88,6 +94,11 @@ export function Header() {
                               نقل عفش {a.name}
                             </Link>
                           ))}
+                          <div className="border-t border-slate-100 mt-1 pt-1">
+                            <Link href="/areas" className="block text-center text-xs font-bold text-brand-primary py-1.5 hover:underline">
+                              جميع المناطق ←
+                            </Link>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -95,57 +106,56 @@ export function Header() {
                 }
 
                 return (
-                  <Link key={link.href} href={link.href} className={cn("px-3 py-2 text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
+                  <Link key={link.href} href={link.href} className={cn("px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
                     {link.label}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Desktop CTAs */}
-            <div className="hidden md:flex items-center gap-2">
-              <Button asChild variant="whatsapp" size="sm" className="h-10 rounded-xl font-bold text-xs">
-                <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود طلب عرض سعر لنقل أثاث")}`} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="h-4 w-4" /> واتساب
-                </a>
-              </Button>
-              <Button asChild size="sm" className="h-10 rounded-xl font-bold text-xs bg-brand-primary">
-                <a href={`tel:${siteConfig.phone}`}>
-                  <Phone className="h-4 w-4" /> {siteConfig.phone}
-                </a>
-              </Button>
+            {/* 3. اليسار: أزرار الاتصال للكمبيوتر واللابتوب + زر القائمة للموبايل */}
+            <div className="flex items-center gap-2">
+              <div className="hidden lg:flex items-center gap-2">
+                <Button asChild variant="whatsapp" size="sm" className="h-10 rounded-xl font-bold text-xs">
+                  <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود طلب عرض سعر لنقل أثاث")}`} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="h-4 w-4" /> واتساب
+                  </a>
+                </Button>
+                <Button asChild size="sm" className="h-10 rounded-xl font-bold text-xs bg-brand-primary">
+                  <a href={`tel:${siteConfig.phone}`}>
+                    <Phone className="h-4 w-4" /> {siteConfig.phone}
+                  </a>
+                </Button>
+              </div>
+
+              {/* زر قائمة الموبايل (يظهر فقط تحت 1024px) */}
+              <button
+                onClick={() => setMobileOpen(true)}
+                className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-brand-dark hover:bg-slate-100"
+                aria-label="فتح القائمة"
+              >
+                <Menu className="h-6 w-6" />
+              </button>
             </div>
 
-            {/* Mobile Toggle Button */}
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="xl:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-brand-dark hover:bg-slate-100"
-              aria-label="فتح القائمة"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
           </div>
         </div>
       </header>
 
-      {/* ═══════════════════════════════════════════ */}
-      {/* Mobile Fullscreen Overlay (تطبيق حقيقي شاشة كاملة بدقة متناهية) */}
-      {/* ═══════════════════════════════════════════ */}
+      {/* 4. قائمة الموبايل الشاملة (Fullscreen Modal) */}
       {mobileOpen && (
-        <div className="xl:hidden fixed inset-0 z-[100] bg-white flex flex-col h-dvh w-screen overflow-hidden animate-in fade-in-0 duration-200">
-          {/* Top Bar داخل المنيو */}
+        <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col h-dvh w-screen overflow-hidden animate-in fade-in-0 duration-200">
           <div className="flex h-16 items-center justify-between px-4 border-b border-slate-200 bg-white shrink-0">
             <Logo />
             <button
               onClick={() => setMobileOpen(false)}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
               aria-label="إغلاق القائمة"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
 
-          {/* القائمة القابلة للتمرير */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -216,23 +226,12 @@ export function Header() {
             })}
           </div>
 
-          {/* أزرار الاتصال التحتية الثابتة داخل المنيو */}
           <div className="p-4 bg-slate-50 border-t border-slate-200 space-y-2 shrink-0">
-            <a
-              href={`tel:${siteConfig.phone}`}
-              className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-brand-primary text-white font-bold text-sm shadow-md"
-            >
-              <Phone className="h-4 w-4" />
-              اتصل الآن: {siteConfig.phone}
+            <a href={`tel:${siteConfig.phone}`} className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-brand-primary text-white font-bold text-sm shadow-md">
+              <Phone className="h-4 w-4" /> اتصل الآن: {siteConfig.phone}
             </a>
-            <a
-              href={`${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود طلب عرض سعر نقل عفش")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md"
-            >
-              <MessageCircle className="h-4 w-4" />
-              تواصل عبر الواتساب
+            <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود طلب عرض سعر")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md">
+              <MessageCircle className="h-4 w-4" /> تواصل عبر الواتساب
             </a>
           </div>
         </div>
