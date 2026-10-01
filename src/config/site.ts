@@ -1,12 +1,12 @@
 export const siteConfig = {
   name: " أبشر لنقل الأثاث",
   nameEn: "Abshir Moving Company",
-  domain: "abshirksa.com",
-  url: "https://abshirksa.com",
+  domain: "abshirmoving.com",
+  url: "https://abshirmoving.com",
   phone: "0536796607",
   phoneInternational: "+966536796607",
   whatsapp: "https://wa.me/966536796607",
-  email: "info@abshirksa.com",
+  email: "info@abshirmoving.com",
   founded: 2014,
   address: {
     city: "الرياض",
