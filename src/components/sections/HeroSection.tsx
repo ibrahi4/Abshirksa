@@ -12,7 +12,7 @@ export function HeroSection() {
         <Image
           src="/herosection.webp"
           alt="نقل عفش شركة أبشر"
-          fill
+          fill priority fetchPriority="high" sizes="(max-width: 768px) 100vw, 80vw"
           priority
           className="object-cover opacity-40 object-center"
         />
