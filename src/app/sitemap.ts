@@ -5,9 +5,9 @@ import { areas } from "@/config/areas";
 import { blogPosts } from "@/config/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.url;
+  const baseUrl = "https://alreefimoving.com";
 
-  const staticPages = [
+  const staticRoutes = [
     "",
     "/about",
     "/services",
@@ -18,7 +18,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/privacy",
     "/terms",
-  ].map((route) => ({
+  ];
+
+  const staticPages = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
