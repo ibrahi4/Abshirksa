@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Toaster } from "react-hot-toast";
-import { tajawal } from "@/lib/fonts";
+import { cairo } from "@/lib/fonts";
 import { siteConfig } from "@/config/site";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
@@ -13,19 +13,19 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "شركة أبشر لنقل الأثاث | نقل عفش بالرياض وجدة والدمام",
-    template: "%s | شركة أبشر لنقل الأثاث",
+    default: "شركة الريفي لنقل العفش والأثاث | الرياض وجدة والدمام",
+    template: "%s | شركة الريفي لنقل العفش",
   },
   description:
-    "شركة أبشر لنقل الأثاث - أفضل شركة نقل عفش في السعودية منذ 2014. نقل وفك وتركيب وتغليف في الرياض وجدة والدمام. معاينة مجانية وخصم 15%. اتصل 0536796607",
+    "شركة الريفي لنقل العفش - أفضل شركة نقل أثاث في السعودية منذ 2014. نقل وفك وتركيب وتغليف الأثاث في الرياض وجدة والدمام. معاينة مجانية وخصم 15%. اتصل 0536796607",
   keywords: [
-    "نقل أثاث",
-    "نقل عفش",
-    "شركة نقل أثاث بالرياض",
+    "شركة الريفي لنقل العفش",
+    "نقل عفش الريفي",
+    "نقل أثاث بالرياض",
     "نقل عفش جدة",
     "دينا نقل عفش",
-    "نقل أثاث السعودية",
-    "شركة أبشر",
+    "شركة نقل أثاث بالرياض",
+    "شركة الريفي",
   ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     locale: "ar_SA",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "شركة أبشر لنقل الأثاث | نقل عفش بالرياض وجدة والدمام",
+    title: "شركة الريفي لنقل العفش والأثاث | الرياض وجدة والدمام",
     description:
       "أفضل شركة نقل أثاث في السعودية منذ 2014. معاينة مجانية وخصم 15%.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "شركة أبشر لنقل الأثاث",
+    title: "شركة الريفي لنقل العفش",
     description: "أفضل شركة نقل أثاث في السعودية. معاينة مجانية وخصم 15%.",
   },
   robots: { index: true, follow: true },
@@ -56,7 +56,7 @@ const jsonLd = {
       "@id": `${siteConfig.url}/#website`,
       url: siteConfig.url,
       name: siteConfig.name,
-      alternateName: ["أبشر لنقل الأثاث", "Abshir Moving", "نقل عفش أبشر"],
+      alternateName: ["شركة الريفي لنقل العفش", "Al-Reefi Moving", "نقل عفش الريفي"],
       inLanguage: "ar-SA",
     },
     {
@@ -92,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl" className={tajawal.variable} suppressHydrationWarning>
+    <html lang="ar" dir="rtl" className={cairo.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
@@ -102,10 +102,18 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="min-h-screen bg-background font-sans antialiased flex flex-col"
+        className="min-h-screen bg-background font-cairo antialiased flex flex-col"
         suppressHydrationWarning
       >
-        
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="GTM"
+          />
+        </noscript>
 
         <AnnouncementBar />
         <Header />
@@ -118,11 +126,13 @@ export default function RootLayout({
           position="top-center"
           toastOptions={{
             duration: 4000,
-            style: { direction: "rtl", fontFamily: "var(--font-sans)" },
+            style: { direction: "rtl", fontFamily: "var(--font-cairo)" },
           }}
         />
 
-        
+        <Script id="gtm" strategy="lazyOnload">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');`}
+        </Script>
       </body>
     </html>
   );
