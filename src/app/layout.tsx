@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Toaster } from "react-hot-toast";
-import { cairo } from "@/lib/fonts";
+import { tajawal } from "@/lib/fonts";
 import { siteConfig } from "@/config/site";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
@@ -91,8 +91,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const fontClass = tajawal?.variable || "";
+
   return (
-    <html lang="ar" dir="rtl" className={cairo.variable} suppressHydrationWarning>
+    <html lang="ar" dir="rtl" className={fontClass} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
@@ -102,7 +104,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="min-h-screen bg-background font-cairo antialiased flex flex-col"
+        className="min-h-screen bg-background font-sans antialiased flex flex-col"
         suppressHydrationWarning
       >
         <noscript>
@@ -126,13 +128,9 @@ export default function RootLayout({
           position="top-center"
           toastOptions={{
             duration: 4000,
-            style: { direction: "rtl", fontFamily: "var(--font-cairo)" },
+            style: { direction: "rtl" },
           }}
         />
-
-        <Script id="gtm" strategy="lazyOnload">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');`}
-        </Script>
       </body>
     </html>
   );

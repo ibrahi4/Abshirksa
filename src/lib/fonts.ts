@@ -6,3 +6,6 @@ export const tajawal = Tajawal({
   variable: "--font-tajawal",
   weight: ["300", "400", "500", "700", "800", "900"],
 });
+
+// اسم مستعار لضمان توافق أي استدعاءات قديمة
+export const cairo = tajawal;
