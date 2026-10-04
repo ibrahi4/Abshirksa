@@ -6,7 +6,7 @@ import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "تواصل معنا | اتصل الآن على 0536796607",
-  description: "تواصل مع فريق شركة أبشر لنقل الأثاث في السعودية. اتصل أو راسلنا عبر واتساب للحصول على معاينة مجانية وعرض سعر فوري.",
+  description: "تواصل مع فريق شركة الريفي لنقل العفش في السعودية. اتصل أو راسلنا عبر واتساب للحصول على معاينة مجانية وعرض سعر فوري.",
 };
 
 export default function ContactPage() {

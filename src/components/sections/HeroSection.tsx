@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/herosection.webp"
-          alt="نقل عفش شركة أبشر"
+          alt="نقل عفش شركة الريفي"
           fill priority fetchPriority="high" sizes="(max-width: 768px) 100vw, 80vw"
           priority
           className="object-cover opacity-40 object-center"

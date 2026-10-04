@@ -43,7 +43,7 @@ export function WhyUsSection() {
             لماذا تختارنا
           </Badge>
           <h2 className="text-3xl md:text-4xl font-extrabold text-brand-dark">
-            لماذا يفضل آلاف العملاء شركة أبشر؟
+            لماذا يفضل آلاف العملاء شركة الريفي؟
           </h2>
           <p className="text-muted-foreground text-base md:text-lg">
             خبرة تمتد لأكثر من 10 سنوات في السوق السعودي جعلتنا الخيار الأول للمنازل والشركات.

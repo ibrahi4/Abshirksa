@@ -7,7 +7,7 @@ import { Home, ChevronLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "خدمات نقل الأثاث الشاملة | فك، تركيب، تغليف، وتخزين",
-  description: "استكشف خدمات شركة أبشر في نقل العفش، فك وتركيب غرف النوم والمطابخ، التغليف الاحترافي، والتخزين في مستودعات مؤمنة.",
+  description: "استكشف خدمات شركة الريفي في نقل العفش، فك وتركيب غرف النوم والمطابخ، التغليف الاحترافي، والتخزين في مستودعات مؤمنة.",
 };
 
 export default function ServicesPage() {

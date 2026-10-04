@@ -26,7 +26,7 @@ export function AnnouncementBar() {
     return (
       <div className="bg-brand-dark text-white py-2.5 text-center text-sm">
         <div className="container mx-auto px-4">
-          <span>مرحباً بك في شركة أبشر لنقل الأثاث</span>
+          <span>مرحباً بك في شركة الريفي لنقل العفش</span>
         </div>
       </div>
     );

@@ -7,7 +7,7 @@ import { Award, ShieldCheck, Truck, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "من نحن | قصة نجاحنا وخبرتنا في نقل الأثاث",
-  description: "تعرف على شركة أبشر لنقل الأثاث، تاريخنا الممتد منذ 2014 وأسطولنا وخبراتنا في خدمة العائلات والشركات في السعودية.",
+  description: "تعرف على شركة الريفي لنقل العفش، تاريخنا الممتد منذ 2014 وأسطولنا وخبراتنا في خدمة العائلات والشركات في السعودية.",
 };
 
 export default function AboutPage() {
@@ -16,13 +16,13 @@ export default function AboutPage() {
       <section className="bg-brand-dark text-white py-16">
         <div className="container mx-auto px-4 text-center max-w-3xl space-y-4">
           <Badge variant="secondary" className="px-4 py-1 bg-brand-secondary text-brand-dark">
-            عن شركة أبشر
+            عن شركة الريفي
           </Badge>
           <h1 className="text-3xl md:text-5xl font-extrabold">
             أكثر من 10 سنوات من الريادة والتميز في نقل الأثاث
           </h1>
           <p className="text-white/80 text-lg">
-            تأسست شركة أبشر عام {siteConfig.founded} لتضع معايير جديدة للاحترافية والأمان في قطاع نقل العفش في المملكة العربية السعودية.
+            تأسست شركة الريفي عام {siteConfig.founded} لتضع معايير جديدة للاحترافية والأمان في قطاع نقل العفش في المملكة العربية السعودية.
           </p>
         </div>
       </section>
@@ -53,7 +53,7 @@ export default function AboutPage() {
             <div className="relative h-96 rounded-3xl overflow-hidden shadow-xl">
               <Image
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
-                alt="فريق شركة أبشر"
+                alt="فريق شركة الريفي"
                 fill
                 className="object-cover"
               />

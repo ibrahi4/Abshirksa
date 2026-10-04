@@ -20,7 +20,7 @@ export function TestimonialsSection() {
             آراء عملائنا
           </Badge>
           <h2 className="text-3xl md:text-4xl font-extrabold text-brand-dark">
-            +5000 عميل يثقون بشركة أبشر
+            +5000 عميل يثقون بشركة الريفي
           </h2>
         </div>
 

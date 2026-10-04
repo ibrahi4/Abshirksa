@@ -22,7 +22,7 @@ export default function ThankYouPage() {
         </h1>
 
         <p className="text-muted-foreground text-base leading-relaxed">
-          شكراً لثقتك في شركة أبشر لنقل الأثاث. سيقوم أحد ممثلي خدمة العملاء بالتواصل معك هاتفياً خلال دقائق لتأكيد الموعد وتقديم أفضل سعر.
+          شكراً لثقتك في شركة الريفي لنقل العفش. سيقوم أحد ممثلي خدمة العملاء بالتواصل معك هاتفياً خلال دقائق لتأكيد الموعد وتقديم أفضل سعر.
         </p>
 
         <div className="p-4 rounded-2xl bg-slate-50 border border-border text-sm text-brand-dark space-y-2">

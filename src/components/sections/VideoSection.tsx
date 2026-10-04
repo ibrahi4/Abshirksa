@@ -18,7 +18,7 @@ export function VideoSection() {
         <div className="relative rounded-3xl overflow-hidden shadow-xl bg-brand-dark aspect-video">
           <img
             src="/images/gallery/fareq-3amal.webp"
-            alt="فيديو عملية نقل أثاث شركة أبشر"
+            alt="فيديو عملية نقل أثاث شركة الريفي"
             className="w-full h-full object-cover opacity-60"
             loading="lazy"
           />

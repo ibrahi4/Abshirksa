@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return {};
 
   return {
-    title: `${service.title} | شركة أبشر`,
+    title: `${service.title} | شركة الريفي`,
     description: service.description,
     keywords: service.keywords,
     alternates: { canonical: `${siteConfig.url}/services/${slug}` },

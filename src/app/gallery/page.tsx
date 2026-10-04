@@ -6,7 +6,7 @@ import { CTASection } from "@/components/sections/CTASection";
 
 export const metadata: Metadata = {
   title: "معرض أعمالنا وعمليات نقل الأثاث الحية",
-  description: "شاهد صور حية لعمليات نقل وتغليف وفك وتركيب الأثاث ودينات أسطول شركة أبشر في المملكة العربية السعودية.",
+  description: "شاهد صور حية لعمليات نقل وتغليف وفك وتركيب الأثاث ودينات أسطول شركة الريفي في المملكة العربية السعودية.",
 };
 
 export default function GalleryPage() {

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   return {
-    title: `${post.title} | مدونة أبشر`,
+    title: `${post.title} | مدونة الريفي`,
     description: post.excerpt,
     keywords: post.keywords,
     alternates: { canonical: `${siteConfig.url}/blog/${slug}` },

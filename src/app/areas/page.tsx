@@ -7,7 +7,7 @@ import { Home, ChevronLeft } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "مناطق وتغطية خدمات نقل الأثاث بالسعودية",
-  description: "تعرف على المدن والأحياء والمحافظات التي تغطيها شركة أبشر لنقل العفش في الرياض، جدة، مكة، الدمام، وباقي المدن.",
+  description: "تعرف على المدن والأحياء والمحافظات التي تغطيها شركة الريفي لنقل العفش في الرياض، جدة، مكة، الدمام، وباقي المدن.",
 };
 
 export default function AreasPage() {
