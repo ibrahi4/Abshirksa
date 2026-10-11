@@ -9,7 +9,7 @@ import { InlineQuoteForm } from "@/components/shared/InlineQuoteForm";
 import { CTASection } from "@/components/sections/CTASection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Phone, MessageCircle, ArrowLeft } from "lucide-react";
+import { CheckCircle2, Phone, MessageCircle, ArrowLeft, Home, ChevronLeft } from "lucide-react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return {};
 
   return {
-    title: `${service.title} | شركة الريفي`,
+    title: `${service.title} | شركة الريفي لنقل العفش`,
     description: service.description,
     keywords: service.keywords,
     alternates: { canonical: `${siteConfig.url}/services/${slug}` },
@@ -60,22 +60,65 @@ export default async function ServiceDetailPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Header */}
-      <section className="bg-brand-dark text-white py-14">
-        <div className="container mx-auto px-4 max-w-4xl space-y-4">
-          <div className="flex items-center gap-2 text-xs text-white/60">
-            <Link href="/" className="hover:text-white">الرئيسية</Link>
-            <span>/</span>
-            <Link href="/services" className="hover:text-white">الخدمات</Link>
-            <span>/</span>
-            <span className="text-brand-secondary">{service.shortTitle}</span>
-          </div>
+      {/* Hero Section المطور للخدمة */}
+      <section className="relative bg-brand-dark text-white py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            priority
+            className="object-cover opacity-30 object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/85 to-brand-dark/60" />
+        </div>
 
-          <Badge variant="secondary" className="bg-brand-secondary text-brand-dark font-bold">
-            خدمة معتمدة
-          </Badge>
-          <h1 className="text-3xl md:text-5xl font-extrabold">{service.title}</h1>
-          <p className="text-lg text-white/80">{service.description}</p>
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-3xl space-y-6">
+            
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+              <Link href="/" className="hover:text-brand-secondary flex items-center gap-1 transition-colors">
+                <Home className="h-3.5 w-3.5" />
+                الرئيسية
+              </Link>
+              <ChevronLeft className="h-3.5 w-3.5 opacity-50" />
+              <Link href="/services" className="hover:text-brand-secondary transition-colors">
+                الخدمات
+              </Link>
+              <ChevronLeft className="h-3.5 w-3.5 opacity-50" />
+              <span className="text-brand-secondary">{service.shortTitle}</span>
+            </div>
+
+            <Badge variant="secondary" className="bg-brand-secondary text-brand-dark font-bold px-4 py-1">
+              خدمة معتمدة بضمان 100%
+            </Badge>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+              {service.title}
+            </h1>
+
+            <p className="text-base sm:text-xl text-slate-200 leading-relaxed">
+              {service.description}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <Button asChild size="lg" className="bg-brand-secondary text-brand-dark hover:bg-brand-secondary/90 font-bold h-14 px-8 rounded-2xl shadow-xl">
+                <a href={`tel:${siteConfig.phone}`}>
+                  <Phone className="h-5 w-5 ml-2" />
+                  اتصل الآن: {siteConfig.phone}
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="whatsapp" className="font-bold h-14 px-8 rounded-2xl shadow-xl">
+                <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent(`السلام عليكم، أرغب في الاستفسار عن ${service.shortTitle}`)}`} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-5 w-5 ml-2" />
+                  واتساب فوري
+                </a>
+              </Button>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -84,16 +127,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7 space-y-8">
-              <div className="relative h-80 sm:h-96 rounded-3xl overflow-hidden shadow-md">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
+              
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-brand-dark">تفاصيل ومميزات الخدمة</h2>
                 <p className="text-muted-foreground leading-relaxed text-base">
@@ -105,7 +139,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <h3 className="text-xl font-bold text-brand-dark">ماذا تشمل هذه الخدمة؟</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {service.features.map((f, i) => (
-                    <div key={i} className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-border">
+                    <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-5 w-5 text-green-600 shrink-0" />
                       <span className="text-sm font-semibold text-brand-dark">{f}</span>
                     </div>
@@ -117,47 +151,27 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <h3 className="text-xl font-bold text-brand-dark">فوائد ومزايا التعاقد معنا</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {service.benefits.map((b, i) => (
-                    <div key={i} className="flex items-center gap-2 p-3 rounded-xl bg-brand-secondary/10 border border-brand-secondary/20">
-                      <CheckCircle2 className="h-5 w-5 text-brand-secondary shrink-0" />
+                    <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+                      <CheckCircle2 className="h-5 w-5 text-amber-600 shrink-0" />
                       <span className="text-sm font-semibold text-brand-dark">{b}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="p-6 rounded-2xl bg-brand-primary text-white flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <div className="text-xs text-white/80">الأسعار التقديرية</div>
-                  <div className="text-2xl font-bold text-brand-secondary">{service.price}</div>
-                </div>
-                <div className="flex gap-2">
-                  <Button asChild size="sm" variant="secondary" className="font-bold">
-                    <a href={`tel:${siteConfig.phone}`}>
-                      <Phone className="h-4 w-4 ml-1" />
-                      اتصل الآن
-                    </a>
-                  </Button>
-                  <Button asChild size="sm" variant="whatsapp" className="font-bold">
-                    <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
-                      <MessageCircle className="h-4 w-4 ml-1" />
-                      واتساب
-                    </a>
-                  </Button>
-                </div>
-              </div>
             </div>
 
             <div className="lg:col-span-5 space-y-6">
               <InlineQuoteForm />
               
-              <div className="p-6 rounded-2xl bg-slate-50 border border-border space-y-4">
+              <div className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-4">
                 <h4 className="font-bold text-brand-dark">خدمات أخرى قد تهمك:</h4>
                 <div className="space-y-2">
                   {services.filter(s => s.slug !== service.slug).slice(0, 4).map(s => (
                     <Link
                       key={s.slug}
                       href={`/services/${s.slug}`}
-                      className="flex items-center justify-between p-3 rounded-xl bg-white border border-border/80 hover:border-brand-primary text-sm font-semibold text-brand-dark group transition-colors"
+                      className="flex items-center justify-between p-3.5 rounded-2xl bg-white border border-slate-200 hover:border-brand-primary text-sm font-semibold text-brand-dark group transition-colors"
                     >
                       <span>{s.shortTitle}</span>
                       <ArrowLeft className="h-4 w-4 text-brand-primary group-hover:-translate-x-1 transition-transform" />
