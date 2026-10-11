@@ -35,7 +35,7 @@ export const footerServices = [
   { label: "نقل الأثاث", href: "/services/furniture-moving" },
   { label: "فك وتركيب", href: "/services/disassembly-assembly" },
   { label: "تغليف احترافي", href: "/services/professional-packing" },
-  { label: "ونش رفع الأثاث", href: "/services/furniture-crane" },
+  { label: "دينا رفع الأثاث", href: "/services/furniture-crane" },
   { label: "فك وتركيب التكييفات", href: "/services/ac-services" },
   { label: "نقل المقتنيات الحساسة", href: "/services/fragile-items" },
 ];
