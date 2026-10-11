@@ -7,7 +7,7 @@ import { blogPosts } from "@/config/blog";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://alreefimoving.com";
 
-  const staticRoutes = [
+  const staticRoutes = ['      "/en",
     "",
     "/about",
     "/services",

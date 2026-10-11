@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Menu, X, Phone, MessageCircle, ChevronDown,
-  Truck, MapPin, Home, Info, Images, BookOpen, HelpCircle, Mail
+  Truck, MapPin, Home, Info, Images, BookOpen, HelpCircle, Mail, Globe
 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,7 @@ export function Header() {
   const [dropdown, setDropdown] = useState<string | null>(null);
   const [mobileExpand, setMobileExpand] = useState<string | null>(null);
   const pathname = usePathname();
+  const isEnglish = pathname.startsWith("/en");
 
   useEffect(() => {
     setMobileOpen(false);
@@ -45,80 +46,82 @@ export function Header() {
     <>
       <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-200 shadow-sm">
         <div className="container mx-auto px-4">
-          <div className="flex h-20 items-center justify-between gap-4">
+          <div className="flex h-20 items-center justify-between gap-2">
             
-            {/* 1. اليمين: اللوجو (يرجع للرئيسية عند الضغط عليه) */}
+            {/* Logo */}
             <Logo />
 
-            {/* 2. الوسط: النيفبار لجميع اللابتوبات والكمبيوتر (lg:flex من 1024px) */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="التنقل الرئيسي">
-              {navLinks.map((link) => {
-                const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            {/* Desktop Nav */}
+            {!isEnglish && (
+              <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="التنقل الرئيسي">
+                {navLinks.map((link) => {
+                  const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
-                if (link.hasDropdown === "services") {
-                  return (
-                    <div key={link.href} className="relative" onMouseEnter={() => setDropdown("services")} onMouseLeave={() => setDropdown(null)}>
-                      <button className={cn("flex items-center gap-1 px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
-                        {link.label}
-                        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", dropdown === "services" && "rotate-180")} />
-                      </button>
-                      {dropdown === "services" && (
-                        <div className="absolute top-full right-0 mt-1 w-64 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 z-50">
-                          {services.slice(0, 6).map((s) => (
-                            <Link key={s.slug} href={`/services/${s.slug}`} className="block px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-primary">
-                              {s.shortTitle}
-                            </Link>
-                          ))}
-                          <div className="border-t border-slate-100 mt-1 pt-1">
-                            <Link href="/services" className="block text-center text-xs font-bold text-brand-primary py-1.5 hover:underline">
-                              عرض جميع الخدمات ←
-                            </Link>
+                  if (link.hasDropdown === "services") {
+                    return (
+                      <div key={link.href} className="relative" onMouseEnter={() => setDropdown("services")} onMouseLeave={() => setDropdown(null)}>
+                        <button className={cn("flex items-center gap-1 px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
+                          {link.label}
+                          <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", dropdown === "services" && "rotate-180")} />
+                        </button>
+                        {dropdown === "services" && (
+                          <div className="absolute top-full right-0 mt-1 w-64 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 z-50">
+                            {services.slice(0, 6).map((s) => (
+                              <Link key={s.slug} href={`/services/${s.slug}`} className="block px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-primary">
+                                {s.shortTitle}
+                              </Link>
+                            ))}
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
+                        )}
+                      </div>
+                    );
+                  }
 
-                if (link.hasDropdown === "areas") {
-                  return (
-                    <div key={link.href} className="relative" onMouseEnter={() => setDropdown("areas")} onMouseLeave={() => setDropdown(null)}>
-                      <button className={cn("flex items-center gap-1 px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
-                        {link.label}
-                        <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", dropdown === "areas" && "rotate-180")} />
-                      </button>
-                      {dropdown === "areas" && (
-                        <div className="absolute top-full right-0 mt-1 w-52 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 z-50">
-                          {mainAreas.map((a) => (
-                            <Link key={a.slug} href={`/areas/${a.slug}`} className="block px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-primary">
-                              نقل عفش {a.name}
-                            </Link>
-                          ))}
-                          <div className="border-t border-slate-100 mt-1 pt-1">
-                            <Link href="/areas" className="block text-center text-xs font-bold text-brand-primary py-1.5 hover:underline">
-                              جميع المناطق ←
-                            </Link>
+                  if (link.hasDropdown === "areas") {
+                    return (
+                      <div key={link.href} className="relative" onMouseEnter={() => setDropdown("areas")} onMouseLeave={() => setDropdown(null)}>
+                        <button className={cn("flex items-center gap-1 px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
+                          {link.label}
+                          <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", dropdown === "areas" && "rotate-180")} />
+                        </button>
+                        {dropdown === "areas" && (
+                          <div className="absolute top-full right-0 mt-1 w-52 rounded-2xl border border-slate-200 bg-white shadow-xl p-2 z-50">
+                            {mainAreas.map((a) => (
+                              <Link key={a.slug} href={`/areas/${a.slug}`} className="block px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-brand-primary">
+                                نقل عفش {a.name}
+                              </Link>
+                            ))}
                           </div>
-                        </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Link key={link.href} href={link.href} className={cn("px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
+                      {link.label}
+                    </Link>
                   );
-                }
+                })}
+              </nav>
+            )}
 
-                return (
-                  <Link key={link.href} href={link.href} className={cn("px-2.5 py-2 text-xs xl:text-sm font-bold rounded-lg transition-colors", isActive ? "text-brand-primary bg-brand-primary/5" : "text-slate-700 hover:text-brand-primary hover:bg-slate-50")}>
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {/* 3. اليسار: أزرار الاتصال للكمبيوتر واللابتوب + زر القائمة للموبايل */}
+            {/* CTAs & Language Switcher */}
             <div className="flex items-center gap-2">
+              {/* Language Switcher */}
+              <Link
+                href={isEnglish ? "/" : "/en"}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-700 border border-slate-200 rounded-xl hover:border-brand-primary hover:text-brand-primary transition-colors bg-slate-50"
+                title={isEnglish ? "الموقع بالعربية" : "English Version"}
+              >
+                <Globe className="h-4 w-4 text-brand-primary" />
+                <span>{isEnglish ? "عربي" : "EN"}</span>
+              </Link>
+
               <div className="hidden lg:flex items-center gap-2">
                 <Button asChild variant="whatsapp" size="sm" className="h-10 rounded-xl font-bold text-xs">
-                  <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود طلب عرض سعر لنقل أثاث")}`} target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="h-4 w-4" /> واتساب
+                  <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent(isEnglish ? "Hi, I need a quote for moving furniture" : "السلام عليكم، أود طلب عرض سعر لنقل أثاث")}`} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="h-4 w-4" /> {isEnglish ? "WhatsApp" : "واتساب"}
                   </a>
                 </Button>
                 <Button asChild size="sm" className="h-10 rounded-xl font-bold text-xs bg-brand-primary">
@@ -128,11 +131,11 @@ export function Header() {
                 </Button>
               </div>
 
-              {/* زر قائمة الموبايل (يظهر فقط تحت 1024px) */}
+              {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileOpen(true)}
                 className="lg:hidden flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-brand-dark hover:bg-slate-100"
-                aria-label="فتح القائمة"
+                aria-label="Menu"
               >
                 <Menu className="h-6 w-6" />
               </button>
@@ -142,7 +145,7 @@ export function Header() {
         </div>
       </header>
 
-      {/* 4. قائمة الموبايل الشاملة (Fullscreen Modal) */}
+      {/* Mobile Drawer */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col h-dvh w-screen overflow-hidden animate-in fade-in-0 duration-200">
           <div className="flex h-16 items-center justify-between px-4 border-b border-slate-200 bg-white shrink-0">
@@ -150,68 +153,24 @@ export function Header() {
             <button
               onClick={() => setMobileOpen(false)}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200"
-              aria-label="إغلاق القائمة"
+              aria-label="Close"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
 
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
-            {navLinks.map((link) => {
+            <Link
+              href={isEnglish ? "/" : "/en"}
+              className="flex items-center gap-3 py-3 px-3 rounded-xl font-bold text-sm bg-slate-100 text-brand-primary mb-3"
+            >
+              <Globe className="h-5 w-5" />
+              <span>{isEnglish ? "التحويل للغة العربية" : "Switch to English Version"}</span>
+            </Link>
+
+            {!isEnglish && navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-
-              if (link.hasDropdown === "services") {
-                return (
-                  <div key={link.href} className="border-b border-slate-100 pb-1">
-                    <button
-                      onClick={() => setMobileExpand(mobileExpand === "services" ? null : "services")}
-                      className={cn("flex w-full items-center justify-between py-3 px-2 font-bold text-base", isActive ? "text-brand-primary" : "text-slate-800")}
-                    >
-                      <span className="flex items-center gap-3">
-                        <Icon className="h-5 w-5 text-brand-primary" />
-                        {link.label}
-                      </span>
-                      <ChevronDown className={cn("h-4 w-4 transition-transform", mobileExpand === "services" && "rotate-180")} />
-                    </button>
-                    {mobileExpand === "services" && (
-                      <div className="mr-6 my-1 space-y-1 border-r-2 border-brand-primary/20 pr-3 bg-slate-50/50 rounded-lg p-2">
-                        {services.map((s) => (
-                          <Link key={s.slug} href={`/services/${s.slug}`} className="block py-2 px-2 text-sm font-semibold text-slate-600 hover:text-brand-primary">
-                            {s.shortTitle}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              if (link.hasDropdown === "areas") {
-                return (
-                  <div key={link.href} className="border-b border-slate-100 pb-1">
-                    <button
-                      onClick={() => setMobileExpand(mobileExpand === "areas" ? null : "areas")}
-                      className={cn("flex w-full items-center justify-between py-3 px-2 font-bold text-base", isActive ? "text-brand-primary" : "text-slate-800")}
-                    >
-                      <span className="flex items-center gap-3">
-                        <Icon className="h-5 w-5 text-brand-primary" />
-                        {link.label}
-                      </span>
-                      <ChevronDown className={cn("h-4 w-4 transition-transform", mobileExpand === "areas" && "rotate-180")} />
-                    </button>
-                    {mobileExpand === "areas" && (
-                      <div className="mr-6 my-1 space-y-1 border-r-2 border-brand-secondary/30 pr-3 bg-slate-50/50 rounded-lg p-2">
-                        {mainAreas.map((a) => (
-                          <Link key={a.slug} href={`/areas/${a.slug}`} className="block py-2 px-2 text-sm font-semibold text-slate-600 hover:text-brand-primary">
-                            نقل عفش {a.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
 
               return (
                 <Link
@@ -228,10 +187,10 @@ export function Header() {
 
           <div className="p-4 bg-slate-50 border-t border-slate-200 space-y-2 shrink-0">
             <a href={`tel:${siteConfig.phone}`} className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-brand-primary text-white font-bold text-sm shadow-md">
-              <Phone className="h-4 w-4" /> اتصل الآن: {siteConfig.phone}
+              <Phone className="h-4 w-4" /> {isEnglish ? "Call Us: " : "اتصل الآن: "}{siteConfig.phone}
             </a>
-            <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent("السلام عليكم، أود طلب عرض سعر")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md">
-              <MessageCircle className="h-4 w-4" /> تواصل عبر الواتساب
+            <a href={`${siteConfig.whatsapp}?text=${encodeURIComponent(isEnglish ? "Hi, I need a quote" : "السلام عليكم، أود طلب عرض سعر")}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-[#25D366] text-white font-bold text-sm shadow-md">
+              <MessageCircle className="h-4 w-4" /> {isEnglish ? "Chat on WhatsApp" : "تواصل عبر الواتساب"}
             </a>
           </div>
         </div>
